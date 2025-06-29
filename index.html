@@ -474,7 +474,7 @@
         tanggal: formattedDate
     };
 
-    fetch('https://script.google.com/macros/s/AKfycbwaLDtIQeSt_tcU60E-nQlyam0ogcUjPP5MN5sGPYatgKuqawpBTIOzXyUgI7H3NNKI/exec', {
+    fetch('https://script.google.com/macros/s/AKfycby4Ye2AdwYGry9kuawNpaOJ8lFAz6UgStiQNTKHC14QRTbfF8TDvW6AsGT0F9wea_SH/exec', {
         method: 'POST',
         body: JSON.stringify(payload),
         headers: {
@@ -483,6 +483,7 @@
     })
     .then(res => res.json())
     .then(data => {
+        console.log('Berhasil dikirim:', data);
         document.getElementById('request-id').textContent = requestId;
         document.getElementById('request-date').textContent = formattedDate;
         document.getElementById('success-modal').classList.remove('hidden');
@@ -493,17 +494,6 @@
         alert('Terjadi kesalahan saat mengirim data. Silakan coba lagi.');
 });
 
-        // Simulate Google Sheets API integration
-        function simulateGoogleSheetsIntegration() {
-            console.log("Sistem ini akan terintegrasi dengan Google Sheets API");
-            console.log("Dalam implementasi nyata:");
-            console.log("1. Data formulir akan dikirim ke Google Sheets menggunakan Google Sheets API");
-            console.log("2. Status permintaan akan diambil dari Google Sheets menggunakan Google Sheets API");
-            console.log("3. Admin akan memperbarui status di Google Sheets");
-        }
-
-        // Call simulation on page load
-        simulateGoogleSheetsIntegration();
     </script>
 </body>
 </html>
