@@ -1,39 +1,72 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Permintaan Email Institusi</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Generator Application - Universitas Muhammadiyah Bone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .form-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
+<body>
+    <div class="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+        <!-- Header -->
+        <header class="bg-blue-800 text-white shadow-md">
+            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-white p-2 rounded-full">
+                        <svg class="w-8 h-8 text-blue-800" xmlns="https://siakad.unimbone.ac.id/assets/images/logo.png" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold">Email Generator Application</h1>
+                        <p class="text-sm text-blue-100">Universitas Muhammadiyah Bone</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul class="flex space-x-6">
+                        <li><a href="#" class="hover:text-blue-200 transition" id="form-nav">Formulir</a></li>
+                        <li><a href="#" class="hover:text-blue-200 transition" id="status-nav">Cek Status</a></li>
+                        <li><a href="#" class="hover:text-blue-200 transition" id="info-nav">Informasi</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
 
-  <!-- Navigation (opsional jika diperlukan toggle menu) -->
-  <nav class="bg-blue-600 text-white py-4 shadow-md">
-    <div class="container mx-auto flex justify-between px-4">
-      <h1 class="text-xl font-semibold">Email Generator Application</h1>
-      <div class="space-x-4">
-        <a href="#" id="form-nav" class="hover:underline">Formulir</a>
-        <a href="#" id="status-nav" class="hover:underline">Cek Status</a>
-        <a href="#" id="info-nav" class="hover:underline">Info</a>
-      </div>
-    </div>
-  </nav>
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 py-8">
+            <!-- Form Section -->
+            <div id="form-section" class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-8 mb-10">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6">Formulir Permintaan Email Institusi</h2>
+                <p class="text-gray-600 mb-6">Silakan lengkapi formulir di bawah ini untuk mengajukan permintaan email institusi baru.</p>
+                
+                <form id="email-request-form" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="nama" class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
+                            <input type="text" id="nama" name="nama" class="form-input w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" required>
+                        </div>
+                        <div>
+                            <label for="nidn" class="block text-sm font-medium text-gray-700 mb-1">NIDN</label>
+                            <input type="text" id="nidn" name="nidn" class="form-input w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" required>
+                        </div>
+                    </div>
 
-  <!-- Main Content -->
-  <main class="container mx-auto px-4 py-8">
-
-    <!-- Formulir Permintaan -->
-    <div id="form-section" class="bg-white p-6 rounded-lg shadow-lg mb-10">
-      <h2 class="text-2xl font-semibold mb-4">Formulir Permintaan Email Institusi</h2>
-      <form id="email-request-form" class="space-y-4">
-        <div class="grid md:grid-cols-2 gap-4">
-          <input id="nama" name="nama" required placeholder="Nama Lengkap" class="form-input w-full p-2 border border-gray-300 rounded-md" />
-          <input id="nidn" name="nidn" required placeholder="NIDN" class="form-input w-full p-2 border border-gray-300 rounded-md" />
-        </div>
-        <select id="prodi" name="prodi" required class="form-select w-full p-2 border border-gray-300 rounded-md">
-          <option value="">Pilih Program Studi</option>
-          <option value="Pendidikan Matematika">Pendidikan Matematika</option>
+                    <div>
+                        <label for="prodi" class="block text-sm font-medium text-gray-700 mb-1">Program Studi</label>
+                        <select id="prodi" name="prodi" class="form-input w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" required>
+                            <option value="" disabled selected>Pilih Program Studi</option>
+                            <option value="Pendidikan Matematika">Pendidikan Matematika</option>
           <option value="Pendidikan Biologi">Pendidikan Biologi</option>
           <option value="Pendidikan Bahasa Inggris">Pendidikan Bahasa Inggris</option>
           <option value="Pendidikan Bahasa Indonesia">Pendidikan Bahasa Indonesia</option>
@@ -46,140 +79,489 @@
           <option value="Teknologi Hasil Pertanian">Teknologi Hasil Pertanian</option>
           <option value="Peternakan">Peternakan</option>
           <option value="Pascasarjana PBI">Pascasarjana PBI</option>
-          <option value=""></option>
-        </select>
-        <div class="flex">
-          <input id="email" name="email" required placeholder="namadosen" class="form-input w-full p-2 border border-gray-300 rounded-l-md" />
-          <span class="inline-flex items-center px-4 bg-gray-100 border border-l-0 border-gray-300 rounded-r-md">@unimbone.ac.id</span>
-        </div>
-        <input type="email" id="email-sekunder" name="email-sekunder" required placeholder="Email Sekunder (untuk recovery)" class="form-input w-full p-2 border border-gray-300 rounded-md" />
-        <input type="tel" id="whatsapp" name="whatsapp" required placeholder="Nomor WhatsApp (+62 atau 08)" class="form-input w-full p-2 border border-gray-300 rounded-md" />
-        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">Ajukan Permintaan</button>
-      </form>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Institusi yang Diinginkan</label>
+                        <div class="flex">
+                            <input type="text" id="email" name="email" required placeholder="namadosen" class="form-input w-full px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none" required>
+                            <span class="inline-flex items-center px-3 py-2 border border-l-0 border-gray-300 bg-gray-100 text-gray-600 rounded-r-md">
+                                @unimbone.ac.id
+                            </span>
+                        </div>
+                      
+                    </div>
+
+                    <div>
+                        <label for="email-sekunder" class="block text-sm font-medium text-gray-700 mb-1">Email Sekunder (untuk recovery)</label>
+                        <input type="email" id="email-sekunder" name="email-sekunder" required placeholder="namadosen@gmail.com" class="form-input w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" required>
+                     
+                    </div>
+
+                    <div>
+                        <label for="whatsapp" class="block text-sm font-medium text-gray-700 mb-1">Nomor WhatsApp</label>
+                        <input type="tel" id="whatsapp" name="whatsapp"required placeholder="62xxxxxxxxxx" class="form-input w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" required>
+                    
+                    </div>
+
+                    <div class="pt-4">
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-md transition duration-300 ease-in-out transform hover:scale-[1.02]">
+                            Ajukan Permintaan
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Status Check Section -->
+            <div id="status-section" class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-8 hidden">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6">Cek Status Permintaan</h2>
+                <p class="text-gray-600 mb-6">Masukkan NIDN dan alamat email yang diajukan untuk melihat status permintaan Anda.</p>
+                
+                <form id="status-check-form" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="check-nidn" class="block text-sm font-medium text-gray-700 mb-1">NIDN</label>
+                            <input type="text" id="check-nidn" name="check-nidn" class="form-input w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" required>
+                        </div>
+                        <div>
+                            <label for="check-email" class="block text-sm font-medium text-gray-700 mb-1">Email yang Diajukan</label>
+                            <div class="flex">
+                                <input type="text" id="check-email" name="check-email" class="form-input w-full px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none" required>
+                                <span class="inline-flex items-center px-3 py-2 border border-l-0 border-gray-300 bg-gray-100 text-gray-600 rounded-r-md">
+                                    @unimbone.ac.id
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-md transition duration-300 ease-in-out">
+                            Cek Status
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Status Result (initially hidden) -->
+                <div id="status-result" class="mt-8 hidden">
+                    <div class="border-t border-gray-200 pt-6">
+                        <h3 class="text-lg font-medium text-gray-800 mb-4">Hasil Pencarian</h3>
+                        
+                        <div class="bg-gray-50 rounded-lg p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-sm font-medium text-gray-600">Status Permintaan:</span>
+                                <span id="status-badge" class="px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                                    Menunggu
+                                </span>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-600">Nama:</span>
+                                    <span id="result-nama" class="text-sm font-medium text-gray-800">-</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-600">NIDN:</span>
+                                    <span id="result-nidn" class="text-sm font-medium text-gray-800">-</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-600">Program Studi:</span>
+                                    <span id="result-prodi" class="text-sm font-medium text-gray-800">-</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-600">Email yang Diajukan:</span>
+                                    <span id="result-email" class="text-sm font-medium text-gray-800">-</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-600">Tanggal Pengajuan:</span>
+                                    <span id="result-tanggal" class="text-sm font-medium text-gray-800">-</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-600">Catatan Admin:</span>
+                                    <span id="result-catatan" class="text-sm font-medium text-gray-800">-</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6">
+                                <div class="relative">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-xs font-medium text-blue-600">Diajukan</span>
+                                        <span class="text-xs font-medium text-yellow-600">Diproses</span>
+                                        <span class="text-xs font-medium text-gray-400">Selesai</span>
+                                    </div>
+                                    <div class="overflow-hidden h-2 text-xs flex rounded bg-gray-200">
+                                        <div id="progress-bar" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500 w-1/3"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Section -->
+            <div id="info-section" class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-8 hidden">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6">Informasi Sistem</h2>
+                
+                <div class="space-y-6">
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <svg class="h-5 w-5 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm text-blue-700">
+                                    Sistem ini menggunakan Google Workspace  sebagai database untuk mengelola permintaan email institusi.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-medium text-gray-800">Cara Kerja Sistem</h3>
+                        <ol class="list-decimal pl-5 space-y-2 text-gray-600">
+                            <li>Dosen mengisi formulir permintaan email institusi.</li>
+                            <li>Data permintaan akan otomatis tersimpan dalam Google Worksheet.</li>
+                            <li>Staf LPDSI akan memproses permintaan dan memperbarui status.</li>
+                            <li>Dosen dapat memeriksa status permintaan kapan saja.</li>
+                            <li>Setelah email dibuat, status akan diperbarui menjadi "Selesai" dengan informasi akun.</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-medium text-gray-800">Alur Proses</h3>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex flex-col space-y-4">
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 rounded-full p-2 mr-3">
+                                        <span class="text-blue-800 font-medium">1</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800">Pengajuan</h4>
+                                        <p class="text-sm text-gray-600">Dosen mengisi formulir dan data tersimpan dengan status "Menunggu".</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="border-l-2 border-dashed border-gray-300 h-6 ml-4"></div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-yellow-100 rounded-full p-2 mr-3">
+                                        <span class="text-yellow-800 font-medium">2</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800">Pemrosesan</h4>
+                                        <p class="text-sm text-gray-600">Staf LPDSI memeriksa data dan memperbarui status menjadi "Diproses".</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="border-l-2 border-dashed border-gray-300 h-6 ml-4"></div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-green-100 rounded-full p-2 mr-3">
+                                        <span class="text-green-800 font-medium">3</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800">Penyelesaian</h4>
+                                        <p class="text-sm text-gray-600">Staf LPDSI membuat email di Google Workspace dan memperbarui status menjadi "Selesai".</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-medium text-gray-800">Integrasi dengan Google Workspace</h3>
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0">
+                                <svg class="h-12 w-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                                    <path fill="#0f9d58" d="M7,37L23,17v23H7V37z"/>
+                                    <path fill="#4285f4" d="M23,12h18v28H23V12z"/>
+                                    <path fill="#ea4335" d="M25,40l16-16v16H25z"/>
+                                </svg>
+                            </div>
+                            <p class="text-gray-600">
+                                Sistem ini terintegrasi dengan Google Workspace untuk pembuatan email institusi.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-medium text-gray-800">Struktur Spreadsheet</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white border border-gray-200">
+                                <thead>
+                                    <tr>
+                                        <th class="px-4 py-2 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kolom</th>
+                                        <th class="px-4 py-2 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Deskripsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">ID</td>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">ID unik permintaan</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">Nama</td>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">Nama lengkap dosen</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">NIDN</td>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">Nomor Induk Dosen Nasional</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">Prodi</td>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">Program studi dosen</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">Email</td>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">Email institusi yang diajukan</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">Email Sekunder</td>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">Email untuk recovery</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">WhatsApp</td>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">Nomor WhatsApp dosen</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">Tanggal</td>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">Tanggal pengajuan</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">Status</td>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">Status permintaan (menunggu/diproses/selesai)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">Catatan</td>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">Catatan dari admin</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Success Modal -->
+            <div id="success-modal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+                <div class="absolute inset-0 bg-black opacity-50"></div>
+                <div class="bg-white rounded-lg p-8 max-w-md w-full relative z-10">
+                    <div class="text-center">
+                        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6">
+                            <svg class="h-10 w-10 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-medium text-gray-900 mb-2">Permintaan Berhasil Diajukan!</h3>
+                        <p class="text-gray-600 mb-6">Permintaan email institusi Anda telah berhasil diajukan dan tersimpan di database. Silakan cek status permintaan secara berkala.</p>
+                        <div class="bg-gray-50 rounded-md p-4 mb-6">
+                            <p class="text-sm text-gray-600">ID Permintaan: <span id="request-id" class="font-medium text-gray-800">REQ-2023-001</span></p>
+                            <p class="text-sm text-gray-600 mt-1">Tanggal Pengajuan: <span id="request-date" class="font-medium text-gray-800">15 November 2023</span></p>
+                        </div>
+                        <div class="flex justify-center">
+                            <button id="close-modal" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-md transition duration-300 ease-in-out">
+                                Tutup
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white py-6">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0">
+                        <p class="text-sm">&copy; 2025 LPDSI - Universitas Muhammadiyah Bone</p>
+                    </div>
+                    <div>
+                        <p class="text-sm">Hak Cipta Dilindungi</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 
-    <!-- Cek Status -->
-    <div id="status-section" class="bg-white p-6 rounded-lg shadow-lg mb-10 hidden">
-      <h2 class="text-2xl font-semibold mb-4">Cek Status Permintaan</h2>
-      <form id="status-check-form" class="space-y-4">
-        <div class="grid md:grid-cols-2 gap-4">
-          <input id="check-nidn" required placeholder="NIDN" class="form-input w-full p-2 border border-gray-300 rounded-md" />
-          <div class="flex">
-            <input id="check-email" required placeholder="namadosen" class="form-input w-full p-2 border border-gray-300 rounded-l-md" />
-            <span class="inline-flex items-center px-4 bg-gray-100 border border-l-0 border-gray-300 rounded-r-md">@unimbone.ac.id</span>
-          </div>
-        </div>
-        <button type="submit" class="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700">Cek Status</button>
-      </form>
+    <script>
+        // Simulasi data dari Google Spreadsheet
+        // Dalam implementasi nyata, Anda akan menggunakan Google Sheets API
+        const spreadsheetData = [
+            {
+                id: "REQ-2023-001",
+                nama: "Dr. Ahmad Fauzi",
+                nidn: "0123456789",
+                prodi: "Teknik Informatika",
+                email: "ahmadfauzi@unimbone.ac.id",
+                emailSekunder: "ahmadfauzi@gmail.com",
+                whatsapp: "081234567890",
+                tanggal: "12 November 2023",
+                status: "menunggu", // menunggu, diproses, selesai
+                catatan: "Sedang menunggu verifikasi data"
+            },
+            {
+                id: "REQ-2023-002",
+                nama: "Dr. Siti Aminah",
+                nidn: "9876543210",
+                prodi: "Sistem Informasi",
+                email: "sitiaminah@unimbone.ac.id",
+                emailSekunder: "sitiaminah@gmail.com",
+                whatsapp: "089876543210",
+                tanggal: "10 November 2023",
+                status: "diproses",
+                catatan: "Sedang membuat akun di Google Workspace"
+            },
+            {
+                id: "REQ-2023-003",
+                nama: "Prof. Budi Santoso",
+                nidn: "5678901234",
+                prodi: "Manajemen",
+                email: "budisantoso@unimbone.ac.id",
+                emailSekunder: "budisantoso@gmail.com",
+                whatsapp: "085678901234",
+                tanggal: "8 November 2023",
+                status: "selesai",
+                catatan: "Email telah dibuat. Password awal: Unimbone2023"
+            }
+        ];
 
-      <!-- Hasil Status -->
-      <div id="status-result" class="mt-6 hidden bg-gray-100 p-4 rounded-lg">
-        <p><strong>Status:</strong> <span id="status-badge" class="text-yellow-600 font-medium">Menunggu</span></p>
-        <ul class="mt-2 space-y-1 text-sm text-gray-800">
-          <li><strong>Nama:</strong> <span id="result-nama">-</span></li>
-          <li><strong>NIDN:</strong> <span id="result-nidn">-</span></li>
-          <li><strong>Prodi:</strong> <span id="result-prodi">-</span></li>
-          <li><strong>Email:</strong> <span id="result-email">-</span></li>
-          <li><strong>Tanggal:</strong> <span id="result-tanggal">-</span></li>
-          <li><strong>Catatan Admin:</strong> <span id="result-catatan">-</span></li>
-        </ul>
-      </div>
-    </div>
+        // Navigation between sections
+        document.getElementById('form-nav').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('form-section').classList.remove('hidden');
+            document.getElementById('status-section').classList.add('hidden');
+            document.getElementById('info-section').classList.add('hidden');
+        });
 
-    <!-- Info -->
-    <div id="info-section" class="bg-white p-6 rounded-lg shadow-lg hidden">
-      <h2 class="text-2xl font-semibold mb-4">Informasi Sistem</h2>
-      <p>Sistem ini menyimpan permintaan email ke Google Spreadsheet dan akan diproses oleh admin.</p>
-    </div>
+        document.getElementById('status-nav').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('form-section').classList.add('hidden');
+            document.getElementById('status-section').classList.remove('hidden');
+            document.getElementById('info-section').classList.add('hidden');
+        });
 
-    <!-- Modal Sukses -->
-    <div id="success-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
-      <div class="bg-white p-6 rounded-lg max-w-sm w-full text-center">
-        <h3 class="text-lg font-semibold text-green-600 mb-2">Permintaan Berhasil!</h3>
-        <p class="text-gray-700">ID Permintaan: <span id="request-id"></span></p>
-        <p class="text-gray-700 mb-4">Tanggal: <span id="request-date"></span></p>
-        <button id="close-modal" class="mt-2 bg-blue-600 text-white py-2 px-4 rounded-md">Tutup</button>
-      </div>
-    </div>
-  </main>
+        document.getElementById('info-nav').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('form-section').classList.add('hidden');
+            document.getElementById('status-section').classList.add('hidden');
+            document.getElementById('info-section').classList.remove('hidden');
+        });
 
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-white py-4 text-center text-sm">
-    &copy; 2025 LPDSI - Universitas Muhammadiyah Bone
-  </footer>
+        // Form submission - simulating Google Sheets API integration
+        document.getElementById('email-request-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const nama = document.getElementById('nama').value;
+            const nidn = document.getElementById('nidn').value;
+            const prodi = document.getElementById('prodi').value;
+            const email = document.getElementById('email').value;
+            const emailSekunder = document.getElementById('email-sekunder').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+            
+            // Generate request ID
+            const requestId = 'REQ-' + new Date().getTime().toString().slice(-8);
+            
+            // Get current date
+            const today = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = today.toLocaleDateString('id-ID', options);
+            
+            // In a real application, you would send this data to Google Sheets API
+            // For demo purposes, we'll just show the success modal and add to our simulated data
+            
+            // Add to simulated spreadsheet data
+            spreadsheetData.push({
+                id: requestId,
+                nama: nama,
+                nidn: nidn,
+                prodi: prodi,
+                email: email + '@unimbone.ac.id',
+                emailSekunder: emailSekunder,
+                whatsapp: whatsapp,
+                tanggal: formattedDate,
+                status: "menunggu",
+                catatan: "Permintaan baru, menunggu verifikasi"
+            });
+            
+            // Update modal with request details
+            document.getElementById('request-id').textContent = requestId;
+            document.getElementById('request-date').textContent = formattedDate;
+            
+            // Show success modal
+            document.getElementById('success-modal').classList.remove('hidden');
+            
+            // Reset form
+            document.getElementById('email-request-form').reset();
+        });
 
-  <!-- Script -->
-  <script>
-    const spreadsheetData = []; // Simulasi
+        // Close modal
+        document.getElementById('close-modal').addEventListener('click', function() {
+            document.getElementById('success-modal').classList.add('hidden');
+        });
 
-    document.getElementById('form-nav').onclick = () => {
-      document.getElementById('form-section').classList.remove('hidden');
-      document.getElementById('status-section').classList.add('hidden');
-      document.getElementById('info-section').classList.add('hidden');
-    };
-    document.getElementById('status-nav').onclick = () => {
-      document.getElementById('form-section').classList.add('hidden');
-      document.getElementById('status-section').classList.remove('hidden');
-      document.getElementById('info-section').classList.add('hidden');
-    };
-    document.getElementById('info-nav').onclick = () => {
-      document.getElementById('form-section').classList.add('hidden');
-      document.getElementById('status-section').classList.add('hidden');
-      document.getElementById('info-section').classList.remove('hidden');
-    };
+        // Status check form - simulating Google Sheets API query
+        document.getElementById('status-check-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nidn = document.getElementById('check-nidn').value;
+            const email = document.getElementById('check-email').value + '@unimbone.ac.id';
+            
+            // In a real application, you would query the Google Sheets API
+            // For demo purposes, we'll use our simulated data
+            const request = spreadsheetData.find(req => req.nidn === nidn && req.email === email);
+            
+            if (request) {
+                document.getElementById('result-nama').textContent = request.nama;
+                document.getElementById('result-nidn').textContent = request.nidn;
+                document.getElementById('result-prodi').textContent = request.prodi;
+                document.getElementById('result-email').textContent = request.email;
+                document.getElementById('result-tanggal').textContent = request.tanggal;
+                document.getElementById('result-catatan').textContent = request.catatan;
+                
+                const statusBadge = document.getElementById('status-badge');
+                const progressBar = document.getElementById('progress-bar');
+                
+                // Update status badge
+                statusBadge.className = 'px-3 py-1 rounded-full text-sm font-medium';
+                
+                if (request.status === 'menunggu') {
+                    statusBadge.classList.add('bg-yellow-100', 'text-yellow-800');
+                    statusBadge.textContent = 'Menunggu';
+                    progressBar.style.width = '33%';
+                    progressBar.className = 'shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500';
+                } else if (request.status === 'diproses') {
+                    statusBadge.classList.add('bg-blue-100', 'text-blue-800');
+                    statusBadge.textContent = 'Diproses';
+                    progressBar.style.width = '66%';
+                    progressBar.className = 'shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-yellow-500';
+                } else if (request.status === 'selesai') {
+                    statusBadge.classList.add('bg-green-100', 'text-green-800');
+                    statusBadge.textContent = 'Selesai';
+                    progressBar.style.width = '100%';
+                    progressBar.className = 'shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500';
+                }
+                
+                document.getElementById('status-result').classList.remove('hidden');
+            } else {
+                alert('Data tidak ditemukan. Silakan periksa kembali NIDN dan email yang dimasukkan.');
+            }
+        });
 
-    document.getElementById('email-request-form').addEventListener('submit', function(e) {
-      e.preventDefault();
+        // Simulate Google Sheets API integration
+        function simulateGoogleSheetsIntegration() {
+            console.log("Sistem ini akan terintegrasi dengan Google Sheets API");
+            console.log("Dalam implementasi nyata:");
+            console.log("1. Data formulir akan dikirim ke Google Sheets menggunakan Google Sheets API");
+            console.log("2. Status permintaan akan diambil dari Google Sheets menggunakan Google Sheets API");
+            console.log("3. Admin akan memperbarui status di Google Sheets");
+        }
 
-      const nama = document.getElementById('nama').value;
-      const nidn = document.getElementById('nidn').value;
-      const prodi = document.getElementById('prodi').value;
-      const email = document.getElementById('email').value;
-      const emailSekunder = document.getElementById('email-sekunder').value;
-      const whatsapp = document.getElementById('whatsapp').value;
-
-      const requestId = 'REQ-' + new Date().getTime().toString().slice(-8);
-      const formattedDate = new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
-
-      spreadsheetData.push({
-        id: requestId,
-        nama, nidn, prodi,
-        email: email + '@unimbone.ac.id',
-        emailSekunder, whatsapp,
-        tanggal: formattedDate,
-        status: 'menunggu', 'Sedang proses','ditolak', 'Selesai',
-        catatan: 'Permintaan baru, menunggu verifikasi'
-      });
-
-      document.getElementById('request-id').textContent = requestId;
-      document.getElementById('request-date').textContent = formattedDate;
-      document.getElementById('success-modal').classList.remove('hidden');
-      document.getElementById('email-request-form').reset();
-    });
-
-    document.getElementById('close-modal').onclick = () => {
-      document.getElementById('success-modal').classList.add('hidden');
-    };
-
-    document.getElementById('status-check-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const nidn = document.getElementById('check-nidn').value;
-      const email = document.getElementById('check-email').value + '@unimbone.ac.id';
-
-      const result = spreadsheetData.find(req => req.nidn === nidn && req.email === email);
-      if (result) {
-        document.getElementById('result-nama').textContent = result.nama;
-        document.getElementById('result-nidn').textContent = result.nidn;
-        document.getElementById('result-prodi').textContent = result.prodi;
-        document.getElementById('result-email').textContent = result.email;
-        document.getElementById('result-tanggal').textContent = result.tanggal;
-        document.getElementById('result-catatan').textContent = result.catatan;
-        document.getElementById('status-badge').textContent = result.status.charAt(0).toUpperCase() + result.status.slice(1);
-        document.getElementById('status-result').classList.remove('hidden');
-      } else {
-        alert("Data tidak ditemukan.");
-      }
-    });
-  </script>
+        // Call simulation on page load
+        simulateGoogleSheetsIntegration();
+    </script>
 </body>
 </html>
