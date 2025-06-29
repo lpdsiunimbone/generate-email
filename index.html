@@ -447,107 +447,51 @@
             document.getElementById('status-section').classList.add('hidden');
             document.getElementById('info-section').classList.remove('hidden');
         });
+            // Add spreadsheet data
+           document.getElementById('email-request-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const nama = document.getElementById('nama').value;
+    const nidn = document.getElementById('nidn').value;
+    const prodi = document.getElementById('prodi').value;
+    const email = document.getElementById('email').value;
+    const emailSekunder = document.getElementById('email-sekunder').value;
+    const whatsapp = document.getElementById('whatsapp').value;
+    
+    const requestId = 'REQ-' + new Date().getTime().toString().slice(-8);
+    const today = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = today.toLocaleDateString('id-ID', options);
 
-        // Form submission - simulating Google Sheets API integration
-        document.getElementById('email-request-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const nama = document.getElementById('nama').value;
-            const nidn = document.getElementById('nidn').value;
-            const prodi = document.getElementById('prodi').value;
-            const email = document.getElementById('email').value;
-            const emailSekunder = document.getElementById('email-sekunder').value;
-            const whatsapp = document.getElementById('whatsapp').value;
-            
-            // Generate request ID
-            const requestId = 'REQ-' + new Date().getTime().toString().slice(-8);
-            
-            // Get current date
-            const today = new Date();
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            const formattedDate = today.toLocaleDateString('id-ID', options);
-            
-            // In a real application, you would send this data to Google Sheets API
-            // For demo purposes, we'll just show the success modal and add to our simulated data
-            
-            // Add to simulated spreadsheet data
-            spreadsheetData.push({
-                id: requestId,
-                nama: nama,
-                nidn: nidn,
-                prodi: prodi,
-                email: email + '@unimbone.ac.id',
-                emailSekunder: emailSekunder,
-                whatsapp: whatsapp,
-                tanggal: formattedDate,
-                status: "menunggu",
-                catatan: "Permintaan baru, menunggu verifikasi"
-            });
-            
-            // Update modal with request details
-            document.getElementById('request-id').textContent = requestId;
-            document.getElementById('request-date').textContent = formattedDate;
-            
-            // Show success modal
-            document.getElementById('success-modal').classList.remove('hidden');
-            
-            // Reset form
-            document.getElementById('email-request-form').reset();
-        });
+    const payload = {
+        id: requestId,
+        nama: nama,
+        nidn: nidn,
+        prodi: prodi,
+        email: email + '@unimbone.ac.id',
+        emailSekunder: emailSekunder,
+        whatsapp: whatsapp,
+        tanggal: formattedDate
+    };
 
-        // Close modal
-        document.getElementById('close-modal').addEventListener('click', function() {
-            document.getElementById('success-modal').classList.add('hidden');
-        });
-
-        // Status check form - simulating Google Sheets API query
-        document.getElementById('status-check-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const nidn = document.getElementById('check-nidn').value;
-            const email = document.getElementById('check-email').value + '@unimbone.ac.id';
-            
-            // In a real application, you would query the Google Sheets API
-            // For demo purposes, we'll use our simulated data
-            const request = spreadsheetData.find(req => req.nidn === nidn && req.email === email);
-            
-            if (request) {
-                document.getElementById('result-nama').textContent = request.nama;
-                document.getElementById('result-nidn').textContent = request.nidn;
-                document.getElementById('result-prodi').textContent = request.prodi;
-                document.getElementById('result-email').textContent = request.email;
-                document.getElementById('result-tanggal').textContent = request.tanggal;
-                document.getElementById('result-catatan').textContent = request.catatan;
-                
-                const statusBadge = document.getElementById('status-badge');
-                const progressBar = document.getElementById('progress-bar');
-                
-                // Update status badge
-                statusBadge.className = 'px-3 py-1 rounded-full text-sm font-medium';
-                
-                if (request.status === 'menunggu') {
-                    statusBadge.classList.add('bg-yellow-100', 'text-yellow-800');
-                    statusBadge.textContent = 'Menunggu';
-                    progressBar.style.width = '33%';
-                    progressBar.className = 'shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500';
-                } else if (request.status === 'diproses') {
-                    statusBadge.classList.add('bg-blue-100', 'text-blue-800');
-                    statusBadge.textContent = 'Diproses';
-                    progressBar.style.width = '66%';
-                    progressBar.className = 'shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-yellow-500';
-                } else if (request.status === 'selesai') {
-                    statusBadge.classList.add('bg-green-100', 'text-green-800');
-                    statusBadge.textContent = 'Selesai';
-                    progressBar.style.width = '100%';
-                    progressBar.className = 'shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500';
-                }
-                
-                document.getElementById('status-result').classList.remove('hidden');
-            } else {
-                alert('Data tidak ditemukan. Silakan periksa kembali NIDN dan email yang dimasukkan.');
-            }
-        });
+    fetch('https://script.google.com/macros/s/AKfycbwaLDtIQeSt_tcU60E-nQlyam0ogcUjPP5MN5sGPYatgKuqawpBTIOzXyUgI7H3NNKI/exec', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById('request-id').textContent = requestId;
+        document.getElementById('request-date').textContent = formattedDate;
+        document.getElementById('success-modal').classList.remove('hidden');
+        document.getElementById('email-request-form').reset();
+    })
+    .catch(error => {
+        console.error('Gagal menyimpan ke Google Sheets:', error);
+        alert('Terjadi kesalahan saat mengirim data. Silakan coba lagi.');
+});
 
         // Simulate Google Sheets API integration
         function simulateGoogleSheetsIntegration() {
